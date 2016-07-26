@@ -26,6 +26,7 @@
 
 
 rm(list=ls())
+library(scidb)
 ### A CONVENIENCE FUNCTION ###
 # This is useful for converting SciDB queries to URL friendly strings
 
