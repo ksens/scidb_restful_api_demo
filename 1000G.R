@@ -55,7 +55,7 @@ demo = function()
   
   #Now let's make it interesting!
   #For all the non-reference variants calls:
-  gt_selection = subset(KG_GENOTYPE, allele_1==TRUE || allele_2==TRUE)
+  gt_selection = subset(KG_GENOTYPE, "allele_1=TRUE OR allele_2=TRUE")
   #Join them with the "selection" variants as above
   gt_selection = merge(gt_selection, selection)
   #Using another array to filter for South Asian population only
@@ -65,7 +65,7 @@ demo = function()
   #For those variant calls, return just these 5 fields:
   gt_selection = project(gt_selection, c("id","reference","alternate","allele_1","allele_2"))
   #And store the result into a new temporary array in SciDB:
-  gt_selection = scidbeval(gt_selection, temp=TRUE)
+  t1 = proc.time(); gt_selection = scidbeval(gt_selection, temp=TRUE); print(proc.time()-t1)
   #Check it out:
   gt_selection@name
   count(gt_selection)
